@@ -1,0 +1,68 @@
+<ol class="breadcrumb">
+  <li><a routerLink="/home">Home</a></li>
+  <li><a routerLink="/instructor">Instructors</a></li>
+  <li class="active">Manage Instructor</li>
+</ol>
+
+<br/>
+
+<a class="btn btn-primary" routerLink="/instructor">Return to Instructors</a>
+
+<h1>Manage Instructor</h1>
+
+<app-status-message [successMessage]="successMessage" [errorMessage]="errorMessage"></app-status-message>
+
+<form novalidate (ngSubmit)="saveInstructor(instructorForm)"  #instructorForm="ngForm" class="form-horizontal">
+<input [ngModel]="instructor?.instructor_id" ngModel #instructor_id="ngModel" type="hidden" name="instructor_id">
+<div class="form-group">
+  <label for="first_name" class="col-sm-2 control-label">First Name</label>
+  <div class="col-sm-10">
+    <input [ngModel]="instructor?.first_name" ngModel #first_name="ngModel" type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name" required minlength="2" maxlength="30" pattern="[A-Za-z]+">
+    <span *ngIf="formErrors.first_name" class="text-danger">
+      {{ formErrors.first_name }}
+    </span> 
+  </div>
+</div>
+<div class="form-group">
+  <label for="last_name" class="col-sm-2 control-label">Last Name</label>
+  <div class="col-sm-10">
+    <input [ngModel]="instructor?.last_name" ngModel #last_name="ngModel" type="text" class="form-control" id="last_name" name="last_name"  placeholder="Last Name" required minlength="2" maxlength="30" pattern="[A-Za-z]+">
+    <span *ngIf="formErrors.last_name" class="text-danger">
+      {{ formErrors.last_name }}
+    </span> 
+  </div>
+</div>
+<div class="form-group">
+  <label for="major_id" class="col-sm-2 control-label">Major ID</label>
+  <div class="col-sm-10">
+    <input [ngModel]="instructor?.major?.major_id" ngModel #major_id="ngModel" type="text" class="form-control" id="major_id" name="major_id" placeholder="Major ID" required pattern="\d+">
+    <span *ngIf="formErrors.major_id" class="text-danger">
+      {{ formErrors.major_id }}
+    </span> 
+  </div>
+</div>
+<div class="form-group">
+  <label for="years_of_experience" class="col-sm-2 control-label">Years of Experience</label>
+  <div class="col-sm-10">
+    <input [ngModel]="instructor?.years_of_experience " ngModel #years_of_experience="ngModel" type="text" class="form-control" id="years_of_experience" name="years_of_experience" placeholder="10" required pattern="\d+">
+    <span *ngIf="formErrors.years_of_experience" class="text-danger">
+      {{ formErrors.years_of_experience }}
+    </span> 
+  </div>
+</div>
+<div class="form-group">
+  <label for="tenured" class="col-sm-2 control-label">Tenured</label>
+  <div class="col-sm-10">
+    <input [ngModel]="instructor?.tenured" ngModel #tenured="ngModel" type="text" class="form-control" id="tenured" name="tenured" placeholder="1 or 0"pattern="[0-1]">
+    <span *ngIf="formErrors.tenured" class="text-danger">
+      {{ formErrors.tenured }}
+    </span> 
+  </div>
+</div>
+ <div class="form-group">
+  <div class="col-sm-offset-2 col-sm-10">
+    <button type="submit" class="btn btn-primary" [disabled]="!instructorForm.form.valid">Submit</button>
+  </div>
+</div>
+</form>
+
